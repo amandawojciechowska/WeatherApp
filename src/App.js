@@ -1,6 +1,7 @@
 import React from "react";
 
 import Titles from "./components/Titles";
+import Time from "./components/Time";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
 
@@ -10,12 +11,14 @@ const API_KEY = "e76909c763f767725a99487eb204de0d";
 class App extends React.Component{
 
     state = {
-        city: undefined,
-        country: undefined,
-        temperature: undefined,
-        humidity: undefined,
-        description: undefined,
-        error: undefined
+        city: "",
+        country: "",
+        temperature: "",
+        humidity: "",
+        pressure: "",
+        description: "",
+        error: "",
+        date: new Date()
     };
 
     getWeather = async (e) => {
@@ -35,6 +38,7 @@ class App extends React.Component{
                 country: data.sys.country,
                 temperature: data.main.temp,
                 humidity: data.main.humidity,
+                pressure: data.main.pressure,
                 description: data.weather[0].description,
                 error: ""
             })
@@ -44,25 +48,45 @@ class App extends React.Component{
                 country: undefined,
                 temperature: undefined,
                 humidity: undefined,
+                pressure: undefined,
                 description: undefined,
-                error: "Please enter the value"
+                error: "Please enter the correct values."
             })
         }
     };
 
+
+    componentDidMount(){
+        this.intervalID = setInterval(()=>{
+            this.setState({
+                date: new Date()
+            })
+        }, 1000);
+    }
+
+    componentWillUnmount(){
+        clearInterval(this.intervalID);
+    }
+
     render(){
         return(
             <div>
-                <Titles/>
-                <Form getWeather={this.getWeather}/>
-                <Weather
-                    city={this.state.city}
-                    country={this.state.country}
-                    temperature={this.state.temperature}
-                    humidity={this.state.humidity}
-                    description={this.state.description}
-                    error={this.state.error}
-                />
+                <div className="container">
+                    <Titles/>
+                    <Time
+                        date={this.state.date}
+                    />
+                    <Form getWeather={this.getWeather} />
+                    <Weather
+                        city={this.state.city}
+                        country={this.state.country}
+                        temperature={this.state.temperature}
+                        humidity={this.state.humidity}
+                        pressure={this.state.pressure}
+                        description={this.state.description}
+                        error={this.state.error}
+                    />
+                </div>
             </div>
         )
     }
