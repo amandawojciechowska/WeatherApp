@@ -18,18 +18,23 @@ import React from "react";
 const Weather = (props) => {
     return (
         <div className="weather_info">
-            {props.city && props.country && <p>Location:
-                <span className="weather_value"> {props.city}, {props.country}</span></p>}
-            {props.temperature && <p>Temperature:
-                <span className="weather_value"> {props.temperature} <sup>o</sup>C</span></p>}
-            {props.humidity && <p>Humidity:
-                <span className="weather_value"> {props.humidity} %</span></p>}
-            {props.pressure && <p>Pressure:
-                <span className="weather_value"> {props.pressure} hPa</span></p>}
-            {props.description && <p>Conditions:
-                <span className="weather_value"> {props.description}</span></p>}
-            {props.error && <p>
-                <span className="weather_error"> {props.error}</span></p>}
+            <div>
+                {props.city && props.country && <p>Location:
+                    <span className="weather_value"> {props.city}, {props.country}</span></p>}
+                {props.temperature && <p>Temperature:
+                    <span className="weather_value"> {props.temperature} <sup>o</sup>C</span></p>}
+                {props.humidity && <p>Humidity:
+                    <span className="weather_value"> {props.humidity} %</span></p>}
+                {props.pressure && <p>Pressure:
+                    <span className="weather_value"> {props.pressure} hPa</span></p>}
+                {props.description && <p>Conditions:
+                    <span className="weather_value"> {props.description}</span></p>}
+                {props.error && <p>
+                    <span className="weather_error"> {props.error}</span></p>}
+            </div>
+            <div>
+                {props.description && <div className="weather_img"></div>}
+            </div>
         </div>
     )
 };

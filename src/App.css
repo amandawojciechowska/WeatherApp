@@ -95,6 +95,7 @@ input:-webkit-autofill {
 }
 
 button {
+    font-family: "Merriweather", serif;
     border: 0;
     padding: 8px 20px;
     margin: 0 2px;
@@ -108,6 +109,15 @@ button {
     outline: none;
 }
 
+
+.weather_img {
+    width: 150px;
+    height: 150px;
+    background: url("./img/clear-sky.jpg") center center no-repeat;
+    background-size: cover;
+    margin-left: 3vw;
+}
+
 .weather_info {
     background-color: #7898B8;
     height: 30vh;
@@ -116,6 +126,7 @@ button {
     font-weight: 200;
     letter-spacing: 2px;
     padding-left: 50px;
+    display: flex;
 }
 
 .weather_key {
